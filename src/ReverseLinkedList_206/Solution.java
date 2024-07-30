@@ -16,9 +16,9 @@ public class Solution {
         head3.next = head4;
         head4.next = head5;
 
-        /*ListNode result = new ListNode();
-        result = reverseList(head);*/
-        show(head);
+        ListNode result = new ListNode();
+        result = reverseList(head);
+        show(result);
     }
 
     public static class ListNode {
@@ -36,7 +36,19 @@ public class Solution {
         }
     }
 
-    /*public static ListNode reverseList(ListNode head) {
+    public static ListNode reverseList(ListNode head) {
 
-    }*/
+        if (head == null) return null;
+
+        ListNode result = new ListNode(head.val, null);
+        head = head.next;
+
+        while (head != null) {
+            ListNode temp = new ListNode(head.val, null);
+            temp.next = result;
+            result = temp;
+            head = head.next;
+        }
+        return result;
+    }
 }
