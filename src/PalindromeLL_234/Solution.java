@@ -16,18 +16,29 @@ public class Solution {
         a.next = b;
         b.next = c;
 
-        ListNode result = isPalindrome(testcase1);
-        System.out.println(result.val);
+        System.out.println(isPalindrome(testcase1));
+    }
 
+    //This solution works almost every testcase
+    //But the last test case is so so so so big, so i think i will use string for this =))
+    public static boolean isPalindrome(ListNode head) {
+        boolean result = false;
 
-        //Test case 2
-        ListNode testcase2 = new ListNode(1, null);
-        ListNode a2 = new ListNode(2, null);
+        long normalNum = 0;
+        long reverseNum = 0;
+        long count = 1;
 
-        testcase2.next = a2;
-        result = isPalindrome(testcase2);
-        System.out.println(result.val);
+        while (head != null) {
+            normalNum = normalNum*10 + head.val;
+            reverseNum += head.val*count;
+            count*=10;
+            head = head.next;
+        }
 
+        if (normalNum == reverseNum)
+            return true;
+
+        return result;
     }
 
     public static class ListNode {
@@ -36,17 +47,6 @@ public class Solution {
         ListNode() {}
         ListNode(int val) { this.val = val; }
         ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-    }
-
-    public static ListNode isPalindrome(ListNode head) {
-        ListNode tail = head;
-        while (tail.next != null) {
-            tail = tail.next;
-        }
-
-
-
-        return tail;
     }
 
 }
