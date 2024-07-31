@@ -1,11 +1,12 @@
-package MidleOfLL_876;
+package MiddleOfLinkedList_876;
 
 
-//This solution use the normal way
-//Calculate the length of LinkedList
-//And then divided by 2
-//Return that middle point
-//But the runtime is large: O(n) to find the length of LL and O(n/2) to reach the middle node
+//This solution use the 2 pointers way
+//We see that: if we divided by 2, we will receive the middle node
+//So, We will use 2 pointer
+//1 pointer called Slow, go through Node by Node
+//1 pointer called Fast, go 2 Node a time
+//Run time: O(n). We have 2 pointer but just go through the LL 1 time
 public class Solution {
     public static void main(String[] args) {
         //Test case
@@ -42,23 +43,21 @@ public class Solution {
     }
 
     public static ListNode middleNode(ListNode head) {
+
         if (head == null) return null;
 
-        ListNode result = new ListNode();
-        result = head;
-        int totalNode = 0;
+        ListNode slow = new ListNode();
+        ListNode fast = new ListNode();
+        slow = head;
+        fast = head;
 
-        while (result != null) {
-            totalNode++;
-            result = result.next;
+        while (fast != null) {
+            fast = fast.next;
+            if (fast != null)
+                fast = fast.next;
+            else break;
+            slow = slow.next;
         }
-
-        totalNode = (totalNode / 2);
-
-        while (totalNode > 0) {
-            totalNode--;
-            head = head.next;
-        }
-        return head;
+        return slow;
     }
 }
