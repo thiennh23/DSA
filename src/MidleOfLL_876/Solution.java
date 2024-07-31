@@ -8,10 +8,12 @@ public class Solution {
         ListNode head3 = new ListNode(3, null);
         ListNode head4 = new ListNode(4, null);
         ListNode head5 = new ListNode(5, null);
+        ListNode head6 = new ListNode(6, null);
         head.next = head2;
         head2.next = head3;
         head3.next = head4;
         head4.next = head5;
+        head5.next = head6;
 
         ListNode result = new ListNode();
         result = middleNode(head);
@@ -34,6 +36,23 @@ public class Solution {
     }
 
     public static ListNode middleNode(ListNode head) {
-        return null;
+        if (head == null) return null;
+
+        ListNode result = new ListNode();
+        result = head;
+        int totalNode = 0;
+
+        while (result != null) {
+            totalNode++;
+            result = result.next;
+        }
+
+        totalNode = (totalNode / 2);
+
+        while (totalNode > 0) {
+            totalNode--;
+            head = head.next;
+        }
+        return head;
     }
 }
